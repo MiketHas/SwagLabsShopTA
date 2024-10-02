@@ -30,20 +30,13 @@ public class BaseTest {
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"//src//main//java//resources//GlobalData.properties");
         prop.load(fis);
 
-        String browserName = prop.getProperty("browser");
-/*
-        String browserName = System.getProperty("browser")!=null ? System.getProperty("browser") : prop.getProperty("browser"); // (1) Ustawiamy by mozna bylo kontrolowac zmienna "browser" z poziomu cmd
-*/
-        // JESLI w systemie (cmd) parametr "browser" nie jest pusty to wez stamtad browser value, jesli jest pusty to wez z getProperty
-        //Przyklad: mvn test -PRegression -Dbrowser=chrome
-        //String browserName = prop.getProperty("browser"); // (2) to sobie komentujemy bo juz niepotrzebne
+        String browserName = System.getProperty("browser")!=null ? System.getProperty("browser") : prop.getProperty("browser");
 
         if (browserName.contains("chrome")) {
-            ChromeOptions options = new ChromeOptions(); // (1A) dodalismy to by skorzystac z opcji ChromeOptions
-            /*options.addArguments("--disable-search-engine-choice-screen");*/ // <--- dodałem to tylko dlatego by sie nie pojawialo okienko wyboru wyszukiwarki Chrome od ver.127
+            ChromeOptions options = new ChromeOptions();
             if (browserName.contains("headless")) {
-                options.addArguments("--headless"); // (2A) dzieki temu test sie odpali BEZ odpalania przegladarki!!!!!!! (JESLI w cmd lub w Jenkins jest -chealdless)
-                driver = new ChromeDriver(options); // (3A) dodalismy parametr "options" by bylo w headless mode
+                options.addArguments("--headless");
+                driver = new ChromeDriver(options);
             }
 
             // Code below is aimed to turn off Chrome's "Change your password" pop-up
@@ -57,7 +50,7 @@ public class BaseTest {
 
             //WebDriverManager.chromedriver().setup();
 
-            driver = new ChromeDriver(options); // <-- dodałem parametr options: PATRZ 44
+            driver = new ChromeDriver(options);
             driver.manage().window().setSize(new Dimension(1920,1080));//full screen // tak na wszelki wypadek jakby cos sie wysypywalo
         } else if (browserName.equalsIgnoreCase("firefox")) {
             driver = new FirefoxDriver();
@@ -81,7 +74,7 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun=true)
     public void tearDown() {
-        driver.quit(); // THERE IS A DIFFERENCE BETWEEN driver.quit() AND driver.close() !!!!!!!!!!!!!!1
+        driver.quit();
     }
 
     /*public void initializeDriver() {
