@@ -3,7 +3,6 @@ package Tests;
 import TestComponents.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import shop.PageObjects.ProductCatalogPage;
 
 public class LoginErrorValidationsTests extends BaseTest {
 

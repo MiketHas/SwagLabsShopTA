@@ -6,12 +6,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import shop.PageObjects.CartPage;
-import shop.PageObjects.LandingPage;
 import shop.PageObjects.ProductCatalogPage;
 import shop.PageObjects.ProductPage;
 
-import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 public class ProductCatalogTests extends BaseTest {
@@ -20,13 +17,9 @@ public class ProductCatalogTests extends BaseTest {
     public ProductCatalogPage productCatalog;
 
     @Test
-    public void addProductToCartTest() throws InterruptedException {///////////////////////////////////
+    public void addProductToCartTest() {
         productCatalog.addProductToCart(productName);
-        Thread.sleep(2000);
-
         CartPage cartPage = productCatalog.goToCartPage();
-        Thread.sleep(2000);
-
         Assert.assertTrue(cartPage.getMatch(productName));
     }
 
@@ -56,13 +49,10 @@ public class ProductCatalogTests extends BaseTest {
     }
 
     @Test
-    public void addProductToCartFromProductPageTest() throws InterruptedException {///////////////////////////////////
+    public void addProductToCartFromProductPageTest() {
         ProductPage productPage = productCatalog.clickOnProduct(productName);
-        Thread.sleep(2000);
         productPage.addProductToCart();
-        Thread.sleep(2000);
         CartPage cartPage = productCatalog.goToCartPage();
-        Thread.sleep(2000);
         Assert.assertTrue(cartPage.getMatch(productName));
     }
 

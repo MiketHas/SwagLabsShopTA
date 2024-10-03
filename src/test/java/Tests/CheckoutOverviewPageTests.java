@@ -20,7 +20,7 @@ public class CheckoutOverviewPageTests extends BaseTest {
     String postalCode = "62025";
 
     @Test
-    public void accessEachProductFromCartTest() {
+    public void accessEachProductFromCheckoutTest() {
         SoftAssert softAssert = new SoftAssert();
         List<String> cartItems = checkoutOverviewPage.getProductNamesList();
         for(String cartItem : cartItems) {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" parallel="tests">
-    <test thread-count="5" name="All Pages Tests">
+<suite name="Page Objects Tests" parallel="tests">
+    <test thread-count="5" name="Individual Pages">
         <classes>
             <class name="Tests.LandingPageTests"/>
             <class name="Tests.ProductCatalogTests"/>
