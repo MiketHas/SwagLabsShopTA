@@ -57,4 +57,4 @@
 |                        | `CheckoutOverviewPageTests`     | - accessEachProductFromCheckoutTest <br> - taxCalculatedCorrectTest <br> - priceTotalCorrectTest  <br> - cancelOrder  <br> - finishOrder |:white_check_mark:<br>:white_check_mark:<br>:white_check_mark:<br>:white_check_mark:<br>:white_check_mark:<br>
 | **Errors Testing**   | `LoginErrorValidationsTests`        | - noUsernameTest <br> - incorrectUsernameTest <br> - incorrectPasswordTest <br> - incorrectUsernameAndPasswordTest |:white_check_mark:<br>:white_check_mark:<br>:white_check_mark:<br>:white_check_mark:<br>
 |                        | `CheckoutAddressErrorValidationsTests` | - continueWithNoPersonalInformationTest <br> - continueWithoutFirstNameTest <br> - continueWithoutSecondNameTest <br> - continueWithoutPostalTest |:white_check_mark:<br>:white_check_mark:<br>:white_check_mark:<br>:white_check_mark:
-|                        | `SubmitOrderErrorValidationsTests` | - productErrorValidationTest <br> - submitEmptyOrderTest |:white_check_mark:<br>:X:
+|                        | `SubmitOrderErrorValidationsTests` | - productErrorValidationTest <br> - submitEmptyOrderTest |:white_check_mark:<br>:x:
