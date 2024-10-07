@@ -77,6 +77,28 @@
     mvn test-PRegression <- uruchomi testy z Profilu Regression -->
 
         <profile>
+            <id>AllSuitesTesting</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <version>3.3.1</version>
+                            <configuration>
+                                <suiteXmlFiles>
+                                    <suiteXmlFile>testSuites/testingE2E.xml</suiteXmlFile>
+                                    <suiteXmlFile>testSuites/pageObjectTests.xml</suiteXmlFile>
+                                    <suiteXmlFile>testSuites/errorValidationTests.xml</suiteXmlFile>
+                                </suiteXmlFiles>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+
+        <profile>
             <id>E2ETesting</id>
             <build>
                 <pluginManagement>

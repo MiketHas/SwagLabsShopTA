@@ -27,7 +27,7 @@ public class CheckoutAddressTests extends BaseTest {
     }
 
     @Test
-    public void cancelOrder() {
+    public void cancelOrderTest() {
         checkoutPage.cancel();
         Assert.assertEquals(cartPage.getPageName(), "Your Cart", "Can't cancel order process!");
 

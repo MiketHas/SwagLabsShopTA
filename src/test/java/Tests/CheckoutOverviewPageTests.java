@@ -45,13 +45,13 @@ public class CheckoutOverviewPageTests extends BaseTest {
     }
 
     @Test
-    public void cancelOrder() {
+    public void cancelOrderTest() {
         checkoutOverviewPage.cancelOrder();
         Assert.assertEquals(productCatalog.getPageName(), "Products", "Cancel button doesn't work properly!");
     }
 
     @Test
-    public void finishOrder() {
+    public void finishOrderTest() {
         ConfirmationPage confirmPage = checkoutOverviewPage.goToConfirmation();
         Assert.assertTrue(confirmPage.orderConfirmed("Thank you for your order!"));
     }
