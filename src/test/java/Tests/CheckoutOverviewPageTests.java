@@ -20,7 +20,7 @@ public class CheckoutOverviewPageTests extends BaseTest {
     String postalCode = "62025";
 
     @Test
-    public void accessEachProductFromCheckoutTest() {
+    public void accessEachProductOnCheckoutTest() {
         SoftAssert softAssert = new SoftAssert();
         List<String> cartItems = checkoutOverviewPage.getProductNamesList();
         for(String cartItem : cartItems) {
@@ -45,7 +45,7 @@ public class CheckoutOverviewPageTests extends BaseTest {
     }
 
     @Test
-    public void cancelOrderTest() {
+    public void cancelOrderOnCheckoutTest() {
         checkoutOverviewPage.cancelOrder();
         Assert.assertEquals(productCatalog.getPageName(), "Products", "Cancel button doesn't work properly!");
     }

@@ -17,14 +17,14 @@ public class ProductCatalogTests extends BaseTest {
     public ProductCatalogPage productCatalog;
 
     @Test
-    public void addProductToCartTest() {
+    public void addProductToCartOnProductsPageTest () {
         productCatalog.addProductToCart(productName);
         CartPage cartPage = productCatalog.goToCartPage();
         Assert.assertTrue(cartPage.getMatch(productName));
     }
 
     @Test
-    public void removeProductFromCartTest() {
+    public void removeProductFromCartOnProductsPageTest() {
         productCatalog.addProductToCart(productName);
         productCatalog.removeProductFromCart(productName);
         CartPage cartPage = productCatalog.goToCartPage();
@@ -32,7 +32,7 @@ public class ProductCatalogTests extends BaseTest {
     }
 
     @Test
-    public void accessEachProductPageTest() {
+    public void accessEachProductPageTestOnProductsPage() {
         SoftAssert softAssert = new SoftAssert();
         List<String> products = productCatalog.getProductNamesList();
         for(String product : products) {
@@ -49,7 +49,7 @@ public class ProductCatalogTests extends BaseTest {
     }
 
     @Test
-    public void addProductToCartFromProductPageTest() {
+    public void addProductToCartOnProductPageTest() {
         ProductPage productPage = productCatalog.clickOnProduct(productName);
         productPage.addProductToCart();
         CartPage cartPage = productCatalog.goToCartPage();
@@ -57,7 +57,7 @@ public class ProductCatalogTests extends BaseTest {
     }
 
     @Test
-    public void removeProductFromCartFromProductPageTest() {
+    public void removeProductFromCartOnProductPageTest() {
         ProductPage productPage = productCatalog.clickOnProduct(productName);
         productPage.addProductToCart();
         productPage.removeProductFromCart();

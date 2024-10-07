@@ -20,13 +20,13 @@ public class CartPageTests extends BaseTest {
     public String productName2 = "Sauce Labs Fleece Jacket";
 
     @Test
-    public void removeProductFromCartTest() {
+    public void removeProductOnCartTest() {
         cartPage.removeProductFromCart(productName1);
         Assert.assertTrue(cartPage.noMatch(productName1));
     }
 
     @Test
-    public void accessEachProductFromCartTest() {
+    public void accessEachProductOnCartTest() {
         SoftAssert softAssert = new SoftAssert();
         List<String> cartItems = cartPage.getProductNamesList();
         for(String cartItem : cartItems) {
@@ -38,13 +38,13 @@ public class CartPageTests extends BaseTest {
     }
 
     @Test
-    public void continueCheckoutFromCartTest() {
+    public void continueCheckoutOnCartTest() {
         CheckoutAddressPage checkoutAddress = cartPage.goToCheckoutAddress();
         Assert.assertEquals(checkoutAddress.getPageName(), "Checkout: Your Information", "Can't continue from cart to Input Personal Information page!");
     }
 
     @Test
-    public void continueShoppingFromCartTest() {
+    public void continueShoppingOnCartTest() {
         cartPage.continueShopping();
         Assert.assertEquals(productCatalog.getPageName(), "Products", "Can't continue shopping!");
     }
