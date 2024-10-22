@@ -16,7 +16,9 @@ public class LandingPageTests extends BaseTest {
             ProductCatalogPage catalogPage = null;
             if (userName.equals("locked_out_user")) {
                 System.out.println("Omitting locked-out user from the test.");
-                return; // Skip the test for the locked-out user
+                continue; // Skip the test for the locked-out user
+            } else {
+                System.out.println("Testing " + userName);
             }
             try {
                 catalogPage = landingPage.loginApplication(userName, correctPassword);
