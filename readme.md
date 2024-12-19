@@ -1,6 +1,9 @@
-### Testing of SwagLabs shop
+### Testing of SwagLabs Shop
+* [Test Plan for SwagLabs Shop](https://drive.google.com/file/d/1YMIyXFVouesNAc82pV6Nb0RfhYL3kmOY/view?usp=sharing)
+* [Test Cases written in Zephyr Scale](https://drive.google.com/file/d/1jyUGSKtnhO0WYDmINyWEV97COnhHn6Fl/view?usp=sharing)
+* [Defect report of a bug found during testing](https://drive.google.com/file/d/1UCT2eYaYDY0NOvOcebe3EIG5QpT2YQUw/view?usp=sharing)
 
-### Test cases checklist for SwagLabs shop
+### Test cases checklist for SwagLabs Shop
 | **Test Created**   | **Test Case**                                                      | **Test**                                  |
 |--------------------|--------------------------------------------------------------------|-------------------------------------------|
 | :white_check_mark: | User can submit an order (end-to-end)                              | - submitOrderTest                         |
@@ -44,7 +47,7 @@
 
 
 
-### Test results by Test Class & Test Cuite
+### Test results by Test Class & Test Suite
 
 | **Test Suite**         | **Test Class**                         | **Test**                                                                                                                                                                                                                                                                                                                                                                                                                            | **Execution Result**                                                                                                                                                                                                                               |   
 |------------------------|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
