@@ -1,6 +1,6 @@
 ### Testing of SwagLabs Shop
 * [Test Plan for SwagLabs Shop](https://drive.google.com/file/d/1YMIyXFVouesNAc82pV6Nb0RfhYL3kmOY/view?usp=sharing)
-* [Test Cases written in Zephyr Scale](https://drive.google.com/file/d/1jyUGSKtnhO0WYDmINyWEV97COnhHn6Fl/view?usp=sharing)
+* [Test Cases written in Zephyr Scale](https://drive.google.com/file/d/1PgJI9kF65dIGdUjnz_FNu6BKfMhukUhw/view?usp=drive_link)
 * [Defect report of a bug found during testing](https://drive.google.com/file/d/1C-JGS7PUOC_d9A2JtLuRhbyqw2ywgelj/view?usp=drive_link)
 * [Defect Analysis](https://drive.google.com/file/d/18uP2mG8_aXKFAOHW_Sc8b4utHwS1mvXd/view?usp=sharing)
 * [Test Summary Report](https://drive.google.com/file/d/1PXkrtkK4eBG65Sfyhgf2mXahYp0Soa2I/view?usp=sharing)
