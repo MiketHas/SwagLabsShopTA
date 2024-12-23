@@ -28,15 +28,6 @@ public class ProductPage extends AbstractComponent {
     @FindBy(xpath = "//button[@data-test='back-to-products']")
     private WebElement backToProducts;
 
-    /*@FindBy(css = ".btn_primary")
-    private WebElement addToCart;
-
-    @FindBy(id = "remove")
-    private WebElement removeFromCart;
-
-    @FindBy(css = "button[data-test='back-to-products']")
-    private WebElement backToProducts;*/
-
     public void addProductToCart() {
         addToCart.click(); // clicking on "Add to cart"
     }
