@@ -1,4 +1,4 @@
-package shop.PageObjects;
+package shop.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -6,32 +6,30 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import shop.AbstractComponents.AbstractComponent;
+import shop.abstractcomponents.AbstractComponent;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 public class ProductCatalogPage extends AbstractComponent {
 
-    WebDriver driver;
+    WebDriver childDriver;
 
     public ProductCatalogPage(WebDriver driver) {
         super(driver);
-        this.driver = driver;
+        this.childDriver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(css=".inventory_item")
-    List<WebElement> products;
+    @FindBy(xpath = "//*[@class='inventory_item']")
+    private List<WebElement> products;
 
-    @FindBy(className="title")
-    WebElement pageName;
+    @FindBy(xpath = "//*[@class='title']")
+    private WebElement pageName;
 
-    @FindBy(css="select[data-test='product-sort-container']")
-    WebElement sortingDropdown;
+    @FindBy(xpath = "//select[@data-test='product-sort-container']") // css = "select[data-test='product-sort-container']")
+    private WebElement sortingDropdown;
 
     Select dropdown = new Select(sortingDropdown);
 
@@ -40,23 +38,20 @@ public class ProductCatalogPage extends AbstractComponent {
     By productPageBy = By.cssSelector(".inventory_item_name");
 
     public List<String> getProductNamesList() {
-        /*List<String> productNames = new ArrayList<>();
-        for(WebElement product : products) {
-            String productName = product.findElement(productPageBy).getText();
-            productNames.add(productName);
-        }*/
-        List<String> productNames = products.stream()
+        return products.stream()
                 .map(product -> product.findElement(productPageBy)
-                        .getText()).collect(Collectors.toList());
-        return productNames;
+                        .getText()).toList();
+    }
+
+    public boolean isProductPresent(String productName) {
+        return getProductNamesList().contains(productName);
     }
 
     public WebElement getProductByName(String productName) {
-        WebElement prod = products.stream().
+        return products.stream().
                 filter(product -> product.findElement(By.className("inventory_item_name"))
                         .getText().equals(productName))
                 .findFirst().orElse(null); // we're NOT searching for that name, we're searching for a product (entire box) that has such a div with this name.
-        return prod;
     }
 
     public void addProductToCart(String productName) {
@@ -72,24 +67,19 @@ public class ProductCatalogPage extends AbstractComponent {
     public ProductPage clickOnProduct(String productName) {
         WebElement prod = getProductByName(productName); // searching for a specific product
         prod.findElement(productPageBy).click(); // clicking on product's name to access its page
-        return new ProductPage(driver);
+        return new ProductPage(childDriver);
     }
 
     public boolean productsWithPrice() {
-        for(WebElement product : products) {
-            try {
-                String priceDollar = product.findElement(By.className("inventory_item_price")).getText();
-                if (!priceDollar.startsWith("$")) {
-                    return false;  // Price should start with a dollar symbol
-                }
-                String priceValue = priceDollar.replace("$", "").trim();
-                double doubleValue = Double.parseDouble(priceValue);
-                if (doubleValue < 0) {
-                    return false; // price shouldn't be negative
-                }
+        for (WebElement product : products) {
+            String priceDollar = product.findElement(By.className("inventory_item_price")).getText();
+            if (!priceDollar.startsWith("$")) {
+                return false;  // Price should start with a dollar symbol
             }
-            catch (NoSuchElementException e) {
-                return false;
+            String priceValue = priceDollar.replace("$", "").trim();
+            double doubleValue = Double.parseDouble(priceValue);
+            if (doubleValue < 0) {
+                return false; // price shouldn't be negative
             }
         }
         return true;
@@ -116,28 +106,22 @@ public class ProductCatalogPage extends AbstractComponent {
     }
 
     public List<String> sortedList(List<String> list) {
-        Collections.sort(list); // sorted copy of the original
-        return list;
+        List<String> sortedCopy = new ArrayList<>(list);
+        Collections.sort(sortedCopy); // sorted copy of the original
+        return sortedCopy;
     }
 
     public List<String> reversedList(List<String> list) {
-        Collections.sort(list, Collections.reverseOrder()); // reversed copy of the original
-
-        return list;
+        List<String> reversedCopy = new ArrayList<>(list);
+        Collections.sort(reversedCopy, Collections.reverseOrder()); // reversed copy of the original
+        return reversedCopy;
     }
 
     public List<Double> getPriceList() {
-        /*List<Double> priceList = new ArrayList<>();
-        for(WebElement product : products) {
-            String priceDollar = product.findElement(By.className("inventory_item_price")).getText();
-            String priceValue = priceDollar.replace("$", "").trim();
-            priceList.add(Double.parseDouble(priceValue));
-        }*/
-        List<Double> priceList = products.stream()
+        return products.stream()
                 .map(product -> product.findElement(By.className("inventory_item_price"))
                         .getText().replace("$", "").trim())
-                .map(Double::parseDouble).collect(Collectors.toList());
-        return priceList;
+                .map(Double::parseDouble).toList();
     }
 
     public List<Double> ascPriceList(List<Double> list) {

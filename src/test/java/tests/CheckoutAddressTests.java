@@ -1,15 +1,15 @@
-package Tests;
+package tests;
 
-import TestComponents.BaseTest;
+import testcomponents.PageLauncher;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import shop.PageObjects.CartPage;
-import shop.PageObjects.CheckoutAddressPage;
-import shop.PageObjects.CheckoutOverviewPage;
-import shop.PageObjects.ProductCatalogPage;
+import shop.pageobjects.CartPage;
+import shop.pageobjects.CheckoutAddressPage;
+import shop.pageobjects.CheckoutOverviewPage;
+import shop.pageobjects.ProductCatalogPage;
 
-public class CheckoutAddressTests extends BaseTest {
+public class CheckoutAddressTests extends PageLauncher {
 
     public ProductCatalogPage productCatalog;
     public CartPage cartPage;
@@ -33,12 +33,12 @@ public class CheckoutAddressTests extends BaseTest {
 
     }
 
-    @BeforeMethod(alwaysRun=true)
+    @BeforeMethod(alwaysRun = true)
     public void login() {
         productCatalog = landingPage.loginApplication("standard_user", "secret_sauce");
         productCatalog.addProductToCart("Sauce Labs Bike Light");
         productCatalog.addProductToCart("Sauce Labs Fleece Jacket");
-        cartPage = productCatalog.goToCartPage();
+        cartPage = mainMenu.goToCartPage();
         checkoutPage = cartPage.goToCheckoutAddress();
     }
 }

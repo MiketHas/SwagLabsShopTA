@@ -1,18 +1,18 @@
-package Tests;
+package tests;
 
-import TestComponents.BaseTest;
+import testcomponents.PageLauncher;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import shop.PageObjects.CartPage;
-import shop.PageObjects.CheckoutAddressPage;
-import shop.PageObjects.ProductCatalogPage;
-import shop.PageObjects.ProductPage;
+import shop.pageobjects.CartPage;
+import shop.pageobjects.CheckoutAddressPage;
+import shop.pageobjects.ProductCatalogPage;
+import shop.pageobjects.ProductPage;
 
 import java.util.List;
 
-public class CartPageTests extends BaseTest {
+public class CartPageTests extends PageLauncher {
 
     public ProductCatalogPage productCatalog;
     public CartPage cartPage;
@@ -29,10 +29,10 @@ public class CartPageTests extends BaseTest {
     public void accessEachProductOnCartTest() {
         SoftAssert softAssert = new SoftAssert();
         List<String> cartItems = cartPage.getProductNamesList();
-        for(String cartItem : cartItems) {
+        for (String cartItem : cartItems) {
             ProductPage productPage = cartPage.clickOnProduct(cartItem);
             softAssert.assertEquals(cartItem, productPage.getProductName());
-            productPage.goToCartPage();
+            mainMenu.goToCartPage();
         }
         softAssert.assertAll();
     }
@@ -49,11 +49,11 @@ public class CartPageTests extends BaseTest {
         Assert.assertEquals(productCatalog.getPageName(), "Products", "Can't continue shopping!");
     }
 
-    @BeforeMethod(alwaysRun=true)
+    @BeforeMethod(alwaysRun = true)
     public void login() {
         productCatalog = landingPage.loginApplication("standard_user", "secret_sauce");
         productCatalog.addProductToCart(productName1);
         productCatalog.addProductToCart(productName2);
-        cartPage = productCatalog.goToCartPage();
+        cartPage = mainMenu.goToCartPage();
     }
 }

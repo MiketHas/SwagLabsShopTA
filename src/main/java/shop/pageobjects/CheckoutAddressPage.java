@@ -1,41 +1,41 @@
-package shop.PageObjects;
+package shop.pageobjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import shop.AbstractComponents.AbstractComponent;
+import shop.abstractcomponents.AbstractComponent;
 
 public class CheckoutAddressPage extends AbstractComponent {
 
-    WebDriver driver;
+    WebDriver childDriver;
 
     public CheckoutAddressPage(WebDriver driver) {
         super(driver);
-        this.driver = driver;
+        this.childDriver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(className="title")
-    WebElement pageName;
+    @FindBy(css = ".title")
+    private WebElement pageName;
 
-    @FindBy(css="input[name='firstName']")
-    WebElement firstNameBy;
+    @FindBy(css = "input[name='firstName']")
+    private WebElement firstNameBy;
 
-    @FindBy(css="input[name='lastName']")
-    WebElement lastNameBy;
+    @FindBy(css = "input[name='lastName']")
+    private WebElement lastNameBy;
 
-    @FindBy(css="input[name='postalCode']")
-    WebElement postalCodeBy;
+    @FindBy(css = "input[name='postalCode']")
+    private WebElement postalCodeBy;
 
-    @FindBy(css="button#cancel")
-    WebElement cancelButton;
+    @FindBy(css = "button#cancel")
+    private WebElement cancelButton;
 
-    @FindBy(css="input#continue")
-    WebElement continueButton;
+    @FindBy(css = "input#continue")
+    private WebElement continueButton;
 
-    @FindBy(xpath="//h3[@data-test='error']")
-    WebElement errorTextElement;
+    @FindBy(xpath = "//h3[@data-test='error']")
+    private WebElement errorTextElement;
 
     public String getPageName() {
         return pageName.getText();
@@ -61,7 +61,7 @@ public class CheckoutAddressPage extends AbstractComponent {
 
     public CheckoutOverviewPage goToFinish() {
         continueButton.click();
-        return new CheckoutOverviewPage(driver);
+        return new CheckoutOverviewPage(childDriver);
     }
 
     public void cancel() {

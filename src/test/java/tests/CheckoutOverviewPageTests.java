@@ -1,15 +1,20 @@
-package Tests;
+package tests;
 
-import TestComponents.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import shop.PageObjects.*;
+import shop.pageobjects.CartPage;
+import shop.pageobjects.CheckoutAddressPage;
+import shop.pageobjects.CheckoutOverviewPage;
+import shop.pageobjects.ConfirmationPage;
+import shop.pageobjects.ProductCatalogPage;
+import shop.pageobjects.ProductPage;
+import testcomponents.PageLauncher;
 
 import java.util.List;
 
-public class CheckoutOverviewPageTests extends BaseTest {
+public class CheckoutOverviewPageTests extends PageLauncher {
 
     public ProductCatalogPage productCatalog;
     public CartPage cartPage;
@@ -23,10 +28,10 @@ public class CheckoutOverviewPageTests extends BaseTest {
     public void accessEachProductOnCheckoutTest() {
         SoftAssert softAssert = new SoftAssert();
         List<String> cartItems = checkoutOverviewPage.getProductNamesList();
-        for(String cartItem : cartItems) {
+        for (String cartItem : cartItems) {
             ProductPage productPage = checkoutOverviewPage.clickOnProduct(cartItem);
             softAssert.assertEquals(cartItem, productPage.getProductName());
-            productPage.goToCartPage();
+            mainMenu.goToCartPage();
             checkoutPage = cartPage.goToCheckoutAddress();
             checkoutPage.enterData(firstName, secondName, postalCode);
             checkoutOverviewPage = checkoutPage.goToFinish();
@@ -56,12 +61,12 @@ public class CheckoutOverviewPageTests extends BaseTest {
         Assert.assertTrue(confirmPage.orderConfirmed("Thank you for your order!"));
     }
 
-    @BeforeMethod(alwaysRun=true)
+    @BeforeMethod(alwaysRun = true)
     public void login() {
         productCatalog = landingPage.loginApplication("standard_user", "secret_sauce");
         productCatalog.addProductToCart("Sauce Labs Bike Light");
         productCatalog.addProductToCart("Sauce Labs Fleece Jacket");
-        cartPage = productCatalog.goToCartPage();
+        cartPage = mainMenu.goToCartPage();
         checkoutPage = cartPage.goToCheckoutAddress();
         checkoutPage.enterData(firstName, secondName, postalCode);
         checkoutOverviewPage = checkoutPage.goToFinish();

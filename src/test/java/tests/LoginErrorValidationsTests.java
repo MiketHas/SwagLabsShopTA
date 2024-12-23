@@ -1,10 +1,10 @@
-package Tests;
+package tests;
 
-import TestComponents.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import testcomponents.PageLauncher;
 
-public class LoginErrorValidationsTests extends BaseTest {
+public class LoginErrorValidationsTests extends PageLauncher {
 
     String correctUsername = "standard_user";
     String correctPassword = "secret_sauce";

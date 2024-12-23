@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Errors Testing" parallel="tests">
-    <test thread-count="5" name="Error Validations Tests">
+<suite name = "Errors Testing" parallel = "tests">
+    <test thread-count = "5" name = "Error Validations tests">
         <classes>
-            <class name="Tests.LoginErrorValidationsTests"/>
-            <class name="Tests.CheckoutAddressErrorValidationsTests"/>
-            <class name="Tests.SubmitOrderErrorValidationsTests"/>
+            <class name = "tests.LoginErrorValidationsTests"/>
+            <class name = "tests.CheckoutAddressErrorValidationsTests"/>
+            <class name = "tests.SubmitOrderErrorValidationsTests"/>
         </classes>
     </test>
 </suite>

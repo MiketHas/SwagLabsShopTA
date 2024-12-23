@@ -1,12 +1,15 @@
-package Tests;
+package tests;
 
-import TestComponents.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import shop.PageObjects.*;
-import shop.PageObjects.CartPage;
+import shop.pageobjects.CartPage;
+import shop.pageobjects.CheckoutAddressPage;
+import shop.pageobjects.CheckoutOverviewPage;
+import shop.pageobjects.ConfirmationPage;
+import shop.pageobjects.ProductCatalogPage;
+import testcomponents.PageLauncher;
 
-public class SubmitOrderTests extends BaseTest {
+public class SubmitOrderTests extends PageLauncher {
 
     String productName = "Sauce Labs Bike Light";
 
@@ -14,7 +17,7 @@ public class SubmitOrderTests extends BaseTest {
     public void submitOrderTest() {
         ProductCatalogPage productCatalog = landingPage.loginApplication("standard_user", "secret_sauce");
         productCatalog.addProductToCart(productName);
-        CartPage cartPage = productCatalog.goToCartPage();
+        CartPage cartPage = mainMenu.goToCartPage();
         CheckoutAddressPage checkoutAddress = cartPage.goToCheckoutAddress();
         checkoutAddress.enterData("Luke", "Skywalker", "00066");
         CheckoutOverviewPage checkoutSummary = checkoutAddress.goToFinish();

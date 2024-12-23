@@ -1,40 +1,40 @@
-package shop.PageObjects;
+package shop.pageobjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import shop.AbstractComponents.AbstractComponent;
+import shop.abstractcomponents.AbstractComponent;
 
 import java.util.List;
 
 public class LandingPage extends AbstractComponent {
 
-    WebDriver driver;
+    WebDriver childDriver;
 
     public LandingPage(WebDriver driver) {
         super(driver);
-        this.driver = driver;
+        this.childDriver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(id="login_credentials")
-    WebElement loginCredentials;
+    @FindBy(xpath = "//*[@id='login_credentials']")
+    private WebElement loginCredentials;
 
-    @FindBy(id="user-name")
-    WebElement userEmail;
+    @FindBy(xpath = "//*[@id='user-name']")
+    private WebElement userEmail;
 
-    @FindBy(id="password")
-    WebElement userPassword;
+    @FindBy(xpath = "//*[@id='password']")
+    private WebElement userPassword;
 
-    @FindBy(id="login-button")
-    WebElement loginButton;
+    @FindBy(xpath = "//*[@id='login-button']")
+    private WebElement loginButton;
 
-    @FindBy(xpath="//h3[@data-test='error']")
-    WebElement errorTextElement;
+    @FindBy(xpath = "//h3[@data-test='error']")
+    private WebElement errorTextElement;
 
     public void goTo() {
-        driver.get("https://www.saucedemo.com/");
+        childDriver.get("https://www.saucedemo.com/");
     }
 
     public void login(String email, String password) {
@@ -45,20 +45,17 @@ public class LandingPage extends AbstractComponent {
 
     public ProductCatalogPage loginApplication(String email, String password) {
         login(email, password);
-        return new ProductCatalogPage(driver);
+        return new ProductCatalogPage(childDriver);
     }
 
-    public List <String> getUsernames() {
+    public List<String> getUsernames() {
         String usernamesText = loginCredentials.getText();
         String cleanedText = usernamesText.replaceFirst("Accepted usernames are:\\n", "");
-        List<String> usernames = List.of(cleanedText.split("\\n"));
-        // System.out.println(usernames);
-        return usernames;
+        return List.of(cleanedText.split("\\n"));
     }
 
     public String getErrorMessage() {
         waitForElementToAppear(errorTextElement);
-        String errorText = errorTextElement.getText();
-        return errorText;
+        return errorTextElement.getText();
     }
 }

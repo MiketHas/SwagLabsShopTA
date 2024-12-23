@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Main order flow Test" parallel="tests">
-    <test thread-count="5" name="Submit Order Tests E2E">
+<suite name = "Main order flow Test" parallel = "tests">
+    <test thread-count = "5" name = "Submit Order tests E2E">
         <classes>
-            <class name="Tests.SubmitOrderTests">
+            <class name = "tests.SubmitOrderTests">
             </class>
         </classes>
     </test>

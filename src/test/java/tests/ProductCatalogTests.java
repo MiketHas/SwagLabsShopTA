@@ -1,25 +1,25 @@
-package Tests;
+package tests;
 
-import TestComponents.BaseTest;
+import testcomponents.PageLauncher;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import shop.PageObjects.CartPage;
-import shop.PageObjects.ProductCatalogPage;
-import shop.PageObjects.ProductPage;
+import shop.pageobjects.CartPage;
+import shop.pageobjects.ProductCatalogPage;
+import shop.pageobjects.ProductPage;
 
 import java.util.List;
 
-public class ProductCatalogTests extends BaseTest {
+public class ProductCatalogTests extends PageLauncher {
 
     String productName = "Sauce Labs Bike Light";
     public ProductCatalogPage productCatalog;
 
     @Test
-    public void addProductToCartOnProductsPageTest () {
+    public void addProductToCartOnProductsPageTest() {
         productCatalog.addProductToCart(productName);
-        CartPage cartPage = productCatalog.goToCartPage();
+        CartPage cartPage = mainMenu.goToCartPage();
         Assert.assertTrue(cartPage.getMatch(productName));
     }
 
@@ -27,7 +27,7 @@ public class ProductCatalogTests extends BaseTest {
     public void removeProductFromCartOnProductsPageTest() {
         productCatalog.addProductToCart(productName);
         productCatalog.removeProductFromCart(productName);
-        CartPage cartPage = productCatalog.goToCartPage();
+        CartPage cartPage = mainMenu.goToCartPage();
         Assert.assertTrue(cartPage.noMatch(productName));
     }
 
@@ -35,7 +35,7 @@ public class ProductCatalogTests extends BaseTest {
     public void accessEachProductPageTestOnProductsPage() {
         SoftAssert softAssert = new SoftAssert();
         List<String> products = productCatalog.getProductNamesList();
-        for(String product : products) {
+        for (String product : products) {
             ProductPage productPage = productCatalog.clickOnProduct(product);
             softAssert.assertEquals(product, productPage.getProductName());
             productPage.backToProductCatalog();
@@ -52,7 +52,7 @@ public class ProductCatalogTests extends BaseTest {
     public void addProductToCartOnProductPageTest() {
         ProductPage productPage = productCatalog.clickOnProduct(productName);
         productPage.addProductToCart();
-        CartPage cartPage = productCatalog.goToCartPage();
+        CartPage cartPage = mainMenu.goToCartPage();
         Assert.assertTrue(cartPage.getMatch(productName));
     }
 
@@ -61,7 +61,7 @@ public class ProductCatalogTests extends BaseTest {
         ProductPage productPage = productCatalog.clickOnProduct(productName);
         productPage.addProductToCart();
         productPage.removeProductFromCart();
-        CartPage cartPage = productCatalog.goToCartPage();
+        CartPage cartPage = mainMenu.goToCartPage();
         Assert.assertTrue(cartPage.noMatch(productName));
     }
 
@@ -101,11 +101,10 @@ public class ProductCatalogTests extends BaseTest {
         Assert.assertEquals(priceList, productCatalog.descPriceList(priceList));
     }
 
-    @BeforeMethod(alwaysRun=true)
+    @BeforeMethod(alwaysRun = true)
     public void login() {
         productCatalog = landingPage.loginApplication("standard_user", "secret_sauce");
     }
-
 
 
 }
