@@ -105,6 +105,4 @@ public class ProductCatalogTests extends PageLauncher {
     public void login() {
         productCatalog = landingPage.loginApplication("standard_user", "secret_sauce");
     }
-
-
 }

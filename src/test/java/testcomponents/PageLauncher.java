@@ -68,6 +68,7 @@ public class PageLauncher {
         landingPage = new LandingPage(driver);
         landingPage.goTo();
         mainMenu = new MainMenu(driver);
+        landingPage.getCredentialsToExcel();
         return landingPage;
     }
 
@@ -75,60 +76,4 @@ public class PageLauncher {
     public void tearDown() {
         driver.quit();
     }
-
-    /*private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    private static ThreadLocal<LandingPage> landingPage = new ThreadLocal<>();
-
-    public WebDriver initializeDriver() throws IOException {
-        Properties prop = new Properties();
-        FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "//src//main//java//resources//GlobalData.properties");
-        prop.load(fis);
-
-        String browserName = System.getProperty("browser") != null ? System.getProperty("browser") : prop.getProperty("browser");
-        WebDriver localDriver = null;
-
-        if (browserName.contains("chrome")) {
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--incognito");
-            options.addArguments("start-maximized");
-
-            localDriver = new ChromeDriver(options);
-        } else if (browserName.equalsIgnoreCase("firefox")) {
-            localDriver = new FirefoxDriver();
-        } else if (browserName.equalsIgnoreCase("edge")) {
-            localDriver = new EdgeDriver();
-        }
-
-        localDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.set(localDriver);
-        return localDriver;
-    }
-
-    @BeforeMethod(alwaysRun = true)
-    public void launchApplication() throws IOException {
-        WebDriver localDriver = initializeDriver();
-        LandingPage localLandingPage = new LandingPage(localDriver);
-        localLandingPage.goTo();
-
-        driver.set(localDriver);
-        landingPage.set(localLandingPage);
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() {
-        WebDriver localDriver = driver.get();
-        if (localDriver != null) {
-            localDriver.quit();
-            driver.remove(); // Remove driver from ThreadLocal
-            landingPage.remove(); // Remove landingPage from ThreadLocal
-        }
-
-    public LandingPage getLandingPage() {
-        return landingPage.get();
-    }
-
-    public WebDriver getDriver() {
-        return driver.get();
-    }
-    }*/
 }
