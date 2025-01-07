@@ -35,7 +35,7 @@ public class PageLauncher {
             ChromeOptions options = new ChromeOptions();
             if (browserName.contains("headless")) {
                 options.addArguments("--headless=old");
-                driver = new ChromeDriver(options);
+                //driver = new ChromeDriver(options); --------------------
             }
 
             // Code below is aimed to turn off Chrome's "Change your password" pop-up

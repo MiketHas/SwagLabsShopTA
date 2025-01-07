@@ -1,13 +1,21 @@
 package shop.abstractcomponents;
 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.DataProvider;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AbstractComponent {
 
@@ -31,5 +39,25 @@ public class AbstractComponent {
     public void waitForElementToDisappear(WebElement elem) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.invisibilityOf(elem));
+    }
+
+    @DataProvider(name = "credentialsProvider")
+    public static Object[][] getCredentialsFromExcel() throws IOException {
+        String filePath = "src/main/resources/Login_Credentials.xlsx";
+        FileInputStream file = new FileInputStream(filePath);
+
+        XSSFWorkbook workbook = new XSSFWorkbook(file);
+        XSSFSheet sheet = workbook.getSheetAt(0);
+
+        List<Object[]> credentials = new ArrayList<>();
+        for (Row row : sheet) {
+            if (row.getRowNum() == 0) continue;
+            String username = row.getCell(0).getStringCellValue();
+            String password = row.getCell(1).getStringCellValue();
+            credentials.add(new Object[]{username, password});
+        }
+
+        workbook.close();
+        return credentials.toArray(new Object[0][0]);
     }
 }
