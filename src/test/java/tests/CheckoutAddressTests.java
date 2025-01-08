@@ -34,8 +34,8 @@ public class CheckoutAddressTests extends PageLauncher {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void login() {
-        productCatalog = landingPage.loginApplication("standard_user", "secret_sauce");
+    public void testSetup() {
+        productCatalog = landingPage.loginApplication(getUsername(),getPassword());
         productCatalog.addProductToCart("Sauce Labs Bike Light");
         productCatalog.addProductToCart("Sauce Labs Fleece Jacket");
         cartPage = mainMenu.goToCartPage();

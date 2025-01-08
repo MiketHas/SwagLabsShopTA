@@ -50,8 +50,8 @@ public class CartPageTests extends PageLauncher {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void login() {
-        productCatalog = landingPage.loginApplication("standard_user", "secret_sauce");
+    public void testSetup() {
+        productCatalog = landingPage.loginApplication(getUsername(),getPassword());
         productCatalog.addProductToCart(productName1);
         productCatalog.addProductToCart(productName2);
         cartPage = mainMenu.goToCartPage();

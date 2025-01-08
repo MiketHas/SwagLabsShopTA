@@ -62,13 +62,13 @@ public class LandingPage extends AbstractComponent {
         return new ProductCatalogPage(childDriver);
     }
 
-    public List<String> getUsernames() {
+    public List<String> getUsernamesFromLandingPage() {
         String usernamesText = loginCredentials.getText();
         String cleanedText = usernamesText.replaceFirst("Accepted usernames are:\\n", "");
         return List.of(cleanedText.split("\\n"));
     }
 
-    public String getPassword() {
+    public String getPasswordFromLandingPage() {
         String passwordText = passwordCredentials.getText();
         return passwordText.replaceFirst("Password for all users:\\n", "");
     }
@@ -83,8 +83,8 @@ public class LandingPage extends AbstractComponent {
 
             // Getting current logins and current password:
             Map<String, String> credentials = new HashMap<>();
-            for (int i = 0; i < getUsernames().toArray().length; i++) {
-                credentials.put(getUsernames().get(i), getPassword());
+            for (int i = 0; i < getUsernamesFromLandingPage().toArray().length; i++) {
+                credentials.put(getUsernamesFromLandingPage().get(i), getPasswordFromLandingPage());
             }
 
             Row headerRow = spreadsheet.createRow(0);

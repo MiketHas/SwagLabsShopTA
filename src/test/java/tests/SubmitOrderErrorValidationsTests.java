@@ -1,6 +1,5 @@
 package tests;
 
-import lombok.extern.java.Log;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -17,13 +16,11 @@ public class SubmitOrderErrorValidationsTests extends PageLauncher {
 
     static Logger logger = Logger.getLogger(DataProvider.class.getName());
 
-    String correctUsername = "standard_user";
-    String correctPassword = "secret_sauce";
     String fakeProduct = "Lightsaber";
 
     @Test
     public void productErrorValidationTest() { // testing if it's possible to add a non-existent product to the cart
-    ProductCatalogPage productCatalog = landingPage.loginApplication(correctUsername, correctPassword);
+    ProductCatalogPage productCatalog = landingPage.loginApplication(getUsername(),getPassword());
         if (!productCatalog.isProductPresent(fakeProduct)) {
             logger.log(Level.INFO, () -> "It's not possible to buy " + fakeProduct + ".");
         } else {
@@ -35,7 +32,7 @@ public class SubmitOrderErrorValidationsTests extends PageLauncher {
 
     @Test
     public void submitEmptyOrderTest() { // testing submitting an empty order
-        landingPage.loginApplication("standard_user", "secret_sauce");
+        landingPage.loginApplication(getUsername(),getPassword());
         CartPage cartPage = mainMenu.goToCartPage();
         CheckoutAddressPage checkoutAddress = cartPage.goToCheckoutAddress();
         checkoutAddress.enterData("Luke", "Skywalker", "00066");

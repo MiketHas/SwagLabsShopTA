@@ -8,6 +8,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import shop.pageobjects.LandingPage;
 import shop.pageobjects.MainMenu;
 
@@ -17,17 +18,35 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PageLauncher {
 
     public WebDriver driver;
     public LandingPage landingPage;
     public MainMenu mainMenu;
+    private static String username;
+    private static String password = "secret_sauce";
+
+    static Logger logger = Logger.getLogger(DataProvider.class.getName());
 
     public WebDriver initializeDriver() throws IOException {
         Properties prop = new Properties();
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "//src//main//java//resources//GlobalData.properties");
         prop.load(fis);
+
+        String login = System.getProperty("login") != null ? System.getProperty("login") : prop.getProperty("login");
+        switch (login) {
+            case "Standard User" -> username = "standard_user";
+            case "Locked Out User" -> username = "locked_out_user";
+            case "Problem User" -> username = "problem_user";
+            case "Performance Glitch User" -> username = "performance_glitch_user";
+            case "Error User" -> username = "error_user";
+            case "Visual User" -> username = "visual_user";
+            default -> username = "standard_user";
+        }
+        logger.log(Level.INFO, () -> "Testing " + username);
 
         String browserName = System.getProperty("browser") != null ? System.getProperty("browser") : prop.getProperty("browser");
 
@@ -59,6 +78,14 @@ public class PageLauncher {
         driver.manage().window().maximize();
 
         return driver;
+    }
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static String getPassword() {
+        return password;
     }
 
     @BeforeMethod(alwaysRun = true)

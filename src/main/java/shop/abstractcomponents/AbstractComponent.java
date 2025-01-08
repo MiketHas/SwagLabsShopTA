@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.DataProvider;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -41,7 +40,6 @@ public class AbstractComponent {
         wait.until(ExpectedConditions.invisibilityOf(elem));
     }
 
-    @DataProvider(name = "credentialsProvider")
     public static Object[][] getCredentialsFromExcel() throws IOException {
         String filePath = "src/main/resources/Login_Credentials.xlsx";
         FileInputStream file = new FileInputStream(filePath);

@@ -6,28 +6,26 @@ import testcomponents.PageLauncher;
 
 public class LoginErrorValidationsTests extends PageLauncher {
 
-    String correctUsername = "standard_user";
-    String correctPassword = "secret_sauce";
     String incorrectUsername = "user123";
     String incorrectPassword = "password";
     String errorMessage = "Epic sadface: Username and password do not match any user in this service";
 
     @Test
     public void noUsernameTest() {
-        landingPage.login("", correctPassword);
+        landingPage.login("", getPassword());
         String errorNoUsername = "Epic sadface: Username is required";
         Assert.assertEquals(landingPage.getErrorMessage(), errorNoUsername);
     }
 
     @Test
     public void incorrectUsernameTest() {
-        landingPage.login(incorrectUsername, correctPassword);
+        landingPage.login(incorrectUsername, getPassword());
         Assert.assertEquals(landingPage.getErrorMessage(), errorMessage);
     }
 
     @Test
     public void incorrectPasswordTest() {
-        landingPage.login(correctUsername, incorrectPassword);
+        landingPage.login(getPassword(), incorrectPassword);
         Assert.assertEquals(landingPage.getErrorMessage(), errorMessage);
     }
 

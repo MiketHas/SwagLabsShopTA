@@ -15,7 +15,7 @@ public class SubmitOrderTests extends PageLauncher {
 
     @Test
     public void submitOrderTest() {
-        ProductCatalogPage productCatalog = landingPage.loginApplication("standard_user", "secret_sauce");
+        ProductCatalogPage productCatalog = landingPage.loginApplication(getUsername(),getPassword());
         productCatalog.addProductToCart(productName);
         CartPage cartPage = mainMenu.goToCartPage();
         CheckoutAddressPage checkoutAddress = cartPage.goToCheckoutAddress();
