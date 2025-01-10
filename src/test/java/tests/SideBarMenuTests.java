@@ -48,6 +48,6 @@ public class SideBarMenuTests extends PageLauncher {
 
     @BeforeMethod(alwaysRun = true)
     public void testSetup() {
-        productCatalog = landingPage.loginApplication(getUsername(),getPassword());
+        productCatalog = landingPage.loginApplication(getUsername(), getPassword());
     }
 }

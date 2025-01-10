@@ -1,6 +1,6 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<!--<suite parallel="classes" thread-count="5" name = "Page Objects tests">
+<suite parallel="classes" thread-count="3" name = "Page Objects tests">
     <test name = "Individual Pages">
         <classes>
             <class name = "tests.LandingPageTests"/>
@@ -9,45 +9,6 @@
             <class name = "tests.CartPageTests"/>
             <class name = "tests.CheckoutAddressTests"/>
             <class name = "tests.CheckoutOverviewPageTests"/>
-        </classes>
-    </test>
-</suite>-->
-
-<suite parallel="tests" thread-count="2" name="Page Objects tests">
-
-    <test name="Individual Pages1">
-        <classes>
-            <class name="tests.LandingPageTests"/>
-        </classes>
-    </test>
-
-    <test name="Individual Pages2">
-        <classes>
-            <class name="tests.ProductCatalogTests"/>
-        </classes>
-    </test>
-
-    <test name="Individual Pages3">
-        <classes>
-            <class name="tests.SideBarMenuTests"/>
-        </classes>
-    </test>
-
-    <test name="Individual Pages4">
-        <classes>
-            <class name="tests.CartPageTests"/>
-        </classes>
-    </test>
-
-    <test name="Individual Pages5">
-        <classes>
-            <class name="tests.CheckoutAddressTests"/>
-        </classes>
-    </test>
-
-    <test name="Individual Pages6">
-        <classes>
-            <class name="tests.CheckoutOverviewPageTests"/>
         </classes>
     </test>
 </suite>

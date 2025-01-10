@@ -48,7 +48,7 @@ public class LandingPage extends AbstractComponent {
     private WebElement errorTextElement;
 
     public void goTo() {
-        childDriver.get("https://www.saucedemo.com/");
+        childDriver.get("https://saucedemo.com/");
     }
 
     public void login(String email, String password) {
@@ -102,7 +102,7 @@ public class LandingPage extends AbstractComponent {
                 passwordCell.setCellValue(entry.getValue());
             }
             workbook.write(file);
-            logger.info("Excel file 'Login_Credentials' created succesfully.");
+            logger.info("Excel file 'Login_Credentials' created and updated succesfully.");
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Something went wrong", e);
         }

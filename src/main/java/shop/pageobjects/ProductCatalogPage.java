@@ -28,7 +28,8 @@ public class ProductCatalogPage extends AbstractComponent {
     @FindBy(xpath = "//*[@class='title']")
     private WebElement pageName;
 
-    @FindBy(xpath = "//select[@data-test='product-sort-container']") // css = "select[data-test='product-sort-container']")
+    @FindBy(xpath = "//select[@data-test='product-sort-container']")
+    // css = "select[data-test='product-sort-container']")
     private WebElement sortingDropdown;
 
     Select dropdown = new Select(sortingDropdown);

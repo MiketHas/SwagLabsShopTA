@@ -15,7 +15,7 @@ public class SubmitOrderTests extends PageLauncher {
 
     @Test
     public void submitOrderTest() {
-        ProductCatalogPage productCatalog = landingPage.loginApplication(getUsername(),getPassword());
+        ProductCatalogPage productCatalog = landingPage.loginApplication(getUsername(), getPassword());
         productCatalog.addProductToCart(productName);
         CartPage cartPage = mainMenu.goToCartPage();
         CheckoutAddressPage checkoutAddress = cartPage.goToCheckoutAddress();
@@ -24,5 +24,4 @@ public class SubmitOrderTests extends PageLauncher {
         ConfirmationPage confirmPage = checkoutSummary.goToConfirmation();
         Assert.assertTrue(confirmPage.orderConfirmed("Thank you for your order!"));
     }
-
 }

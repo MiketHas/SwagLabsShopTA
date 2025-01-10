@@ -63,7 +63,7 @@ public class CheckoutOverviewPageTests extends PageLauncher {
 
     @BeforeMethod(alwaysRun = true)
     public void testSetup() {
-        productCatalog = landingPage.loginApplication(getUsername(),getPassword());
+        productCatalog = landingPage.loginApplication(getUsername(), getPassword());
         productCatalog.addProductToCart("Sauce Labs Bike Light");
         productCatalog.addProductToCart("Sauce Labs Fleece Jacket");
         cartPage = mainMenu.goToCartPage();

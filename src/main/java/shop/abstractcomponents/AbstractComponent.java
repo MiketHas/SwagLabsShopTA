@@ -40,7 +40,7 @@ public class AbstractComponent {
         wait.until(ExpectedConditions.invisibilityOf(elem));
     }
 
-    public static Object[][] getCredentialsFromExcel() throws IOException {
+    public static Object[][] getCredentialsFromExcel() throws IOException { // method no longer necessary as logins have been parameterized. Method left here as a proof that it can be done.
         String filePath = "src/main/resources/Login_Credentials.xlsx";
         FileInputStream file = new FileInputStream(filePath);
 
