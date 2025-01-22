@@ -1,14 +1,18 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite parallel="classes" thread-count="3" name = "Page Objects tests">
+    <parameter name="login" value="standard_user"></parameter>
     <test name = "Individual Pages">
-        <classes>
+        <!--<classes>
             <class name = "tests.LandingPageTests"/>
             <class name = "tests.ProductCatalogTests"/>
             <class name = "tests.SideBarMenuTests"/>
             <class name = "tests.CartPageTests"/>
             <class name = "tests.CheckoutAddressTests"/>
             <class name = "tests.CheckoutOverviewPageTests"/>
-        </classes>
+        </classes>-->
+        <packages>
+            <package name="tests.*"/>
+        </packages>
     </test>
 </suite>
