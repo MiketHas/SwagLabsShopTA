@@ -3,16 +3,16 @@
 <suite parallel="classes" thread-count="3" name = "Page Objects tests">
     <parameter name="login" value="standard_user"></parameter>
     <test name = "Individual Pages">
-        <!--<classes>
+        <classes>
             <class name = "tests.LandingPageTests"/>
             <class name = "tests.ProductCatalogTests"/>
             <class name = "tests.SideBarMenuTests"/>
             <class name = "tests.CartPageTests"/>
             <class name = "tests.CheckoutAddressTests"/>
             <class name = "tests.CheckoutOverviewPageTests"/>
-        </classes>-->
-        <packages>
+        </classes>
+        <!--<packages>
             <package name="tests.*"/>
-        </packages>
+        </packages>-->
     </test>
 </suite>
