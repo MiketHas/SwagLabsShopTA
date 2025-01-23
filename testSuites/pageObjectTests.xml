@@ -1,7 +1,10 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite parallel="classes" thread-count="3" name = "Page Objects tests">
-    <parameter name="login" value="standard_user"></parameter>
+<!--    <parameter name="login" value="standard_user"></parameter>-->
+    <parameter name="Login" value="${login}"></parameter>
+    <parameter name="Browser" value="${browserName}"></parameter>
+    <parameter name="Profile" value="${Profile}"></parameter>
     <test name = "Individual Pages">
         <classes>
             <class name = "tests.LandingPageTests"/>
