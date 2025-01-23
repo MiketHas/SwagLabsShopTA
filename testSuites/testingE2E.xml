@@ -1,6 +1,9 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name = "Main order flow Test" parallel = "tests">
+    <parameter name="Login" value="${login}"></parameter>
+    <parameter name="Browser" value="${browserName}"></parameter>
+    <parameter name="Profile" value="${Profile}"></parameter>
     <test thread-count = "5" name = "Submit Order tests E2E">
         <classes>
             <class name = "tests.SubmitOrderTests">
